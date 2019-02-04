@@ -1,38 +1,38 @@
 ------------ Made By caprancTV ------------
 
-local reportCommand = "ahelp"
+local HelpCommand = "ahelp"
 
-local admins ={
-    "steam:11000010dbe40a2",
-    "steam:",
-    "steam:",
-    "steam:"
+local staff ={
+    "steam:11000010dbe40a2", -- Change this to add staff members
+    "steam:[ADD HEX HERE]",
+    "steam:[ADD HEX HERE]",
+    "steam:[ADD HEX HERE]" -- To add more copy and paste "steam: [ADD HEX HERE]" underneath (REMEMBER, when adding more, add a comma after!)
 }
 
-RegisterCommand(reportCommand, function(s, a)
-	local message = table.concat(a, " ")
-    local reportedPerson = tonumber(a[1])
+RegisterCommand(HelpCommand, function(j, c)
+	local message = table.concat(c, " ")
+    local HelpPerson = tonumber(c[1])
 
     if message then
-        TriggerClientEvent("chatMessage", s, "^1Report Sent to Online Admins.")
-        TriggerClientEvent("SendPlayerReport", -1, s, message)
+        TriggerClientEvent("chatMessage", j, "^1Help request Sent to Online Admins.")
+        TriggerClientEvent("SendPlayerReport", -1, j, message)
     else
-        TriggerClientEvent("chatMessage", s, "^3Please specify a report message. \n^7Usage: /" .. reportCommand .. " Reason")
+        TriggerClientEvent("chatMessage", j, "^3Please specify a help message. \n^7Usage: /" .. HelpCommand .. " Reason")
     end
 end)
 
-RegisterServerEvent('SendReportToAdmins')
-AddEventHandler('SendReportToAdmins', function(reportingParty, message)
+RegisterServerEvent('SendhelpToAdmins')
+AddEventHandler('SendhelpToAdmins', function(needhelpingParty, message)
     local src = source
 
     if IsAdmin(src) then
-        TriggerClientEvent('chatMessage', src, "^*^4[".. GetPlayerName(reportingParty).."NEEDS HELP]^r With " .. message)
+        TriggerClientEvent('chatMessage', src, "^*^4[".. GetPlayerName(needhelpingParty).."NEEDS HELP]^r" .. message)
     end
 end)
 
 function IsAdmin(id)
     local hex = GetPlayerIdentifiers(id)[1]
-    for k,v in pairs(admins) do
+    for k,v in pairs(staff) do
         if hex == v then
             return true
         end
