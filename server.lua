@@ -21,12 +21,12 @@ RegisterCommand(HelpCommand, function(j, c)
     end
 end)
 
-RegisterServerEvent('SendhelpToAdmins')
-AddEventHandler('SendhelpToAdmins', function(needhelpingParty, message)
+RegisterServerEvent('SendHelpRequestToStaff')
+AddEventHandler('SendHelpRequestToStaff', function(needhelpingParty, message)
     local src = source
 
     if IsAdmin(src) then
-        TriggerClientEvent('chatMessage', src, "^*^4[".. GetPlayerName(needhelpingParty).."NEEDS HELP]^r" .. message)
+        TriggerClientEvent('chatMessage', src, "^*^4[".. GetPlayerName(needhelpingParty).." NEEDS HELP]^r " .. message)
     end
 end)
 
